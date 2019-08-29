@@ -3,22 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2;
+package com.janskyd.lab2;
 
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author jansky
  */
-public class ExtendedAnswerExamQuestion implements ExamQuestion {
+@XmlRootElement
+public class ShortAnswerExamQuestion implements ExamQuestion {
     
+    @XmlElement
     private final String text;
+    
+    @XmlElement
+    private final String correctAnswer;
     
     private String answer = "";
     
-    ExtendedAnswerExamQuestion(String text) {
+    private ShortAnswerExamQuestion() {
+        this.text = "";
+        this.correctAnswer = "";
+        this.answer = "";
+    }
+    
+    public ShortAnswerExamQuestion(String text, String correctAnswer) {
         this.text = text;
+        this.correctAnswer = correctAnswer;
     }
 
     @Override
@@ -28,7 +42,11 @@ public class ExtendedAnswerExamQuestion implements ExamQuestion {
 
     @Override
     public AnswerState score() {
-        return AnswerState.UNSCORABLE_ANSWER;
+        if(this.correctAnswer.equals(this.answer)) {
+            return AnswerState.CORRECT_ANSWER;
+        } else {
+            return AnswerState.INCORRECT_ANSWER;
+        }
     }
 
     @Override
@@ -43,7 +61,7 @@ public class ExtendedAnswerExamQuestion implements ExamQuestion {
 
     @Override
     public JPanel createJPanel() {
-        return new ExtendedAnswerQuestionPanel(this);
+        return new ShortAnswerQuestionPanel(this);
     }
 
     @Override
@@ -53,9 +71,7 @@ public class ExtendedAnswerExamQuestion implements ExamQuestion {
 
     @Override
     public String correctAnswer() {
-        return "";
+        return this.correctAnswer;
     }
-    
-    
     
 }

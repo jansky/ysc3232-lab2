@@ -3,24 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2;
+package com.janskyd.lab2;
 
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.*;
 
 /**
  *
  * @author jansky
  */
-public class ShortAnswerExamQuestion implements ExamQuestion {
+@XmlRootElement
+public class ExtendedAnswerExamQuestion implements ExamQuestion {
     
+    @XmlElement
     private final String text;
-    private final String correctAnswer;
     
     private String answer = "";
     
-    public ShortAnswerExamQuestion(String text, String correctAnswer) {
+    private ExtendedAnswerExamQuestion() {
+        this.text = "";
+    }
+    
+    ExtendedAnswerExamQuestion(String text) {
         this.text = text;
-        this.correctAnswer = correctAnswer;
     }
 
     @Override
@@ -30,11 +35,7 @@ public class ShortAnswerExamQuestion implements ExamQuestion {
 
     @Override
     public AnswerState score() {
-        if(this.correctAnswer.equals(this.answer)) {
-            return AnswerState.CORRECT_ANSWER;
-        } else {
-            return AnswerState.INCORRECT_ANSWER;
-        }
+        return AnswerState.UNSCORABLE_ANSWER;
     }
 
     @Override
@@ -49,7 +50,7 @@ public class ShortAnswerExamQuestion implements ExamQuestion {
 
     @Override
     public JPanel createJPanel() {
-        return new ShortAnswerQuestionPanel(this);
+        return new ExtendedAnswerQuestionPanel(this);
     }
 
     @Override
@@ -59,7 +60,9 @@ public class ShortAnswerExamQuestion implements ExamQuestion {
 
     @Override
     public String correctAnswer() {
-        return this.correctAnswer;
+        return "";
     }
+    
+    
     
 }

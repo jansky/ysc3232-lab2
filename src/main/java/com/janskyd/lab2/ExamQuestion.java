@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2;
+package com.janskyd.lab2;
 
 import javax.swing.JPanel;
 

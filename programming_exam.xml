@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<exam>
+    <title>Programming Language Exam</title>
+    <welcomeText>You are going to complete a short exam testing your knowledge of different programming languages. Good luck!</welcomeText>
+    <finishedText>You have finished the exam.</finishedText>
+    <questions>
+        <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="multipleChoiceExamQuestion">
+            <text>Which of the following languages is known for having robust support for concurrency built-in to the language?</text>
+            <correctAnswers>
+                <correctAnswer>C</correctAnswer>
+                <correctAnswer>Go</correctAnswer>
+                <correctAnswer>OCaml</correctAnswer>
+                <correctAnswer>JavaScript</correctAnswer>
+            </correctAnswers>
+            <correctAnswer>Go</correctAnswer>
+        </question>
+        <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="shortAnswerExamQuestion">
+            <text>What language are we using in YSC3232</text>
+            <correctAnswer>Java</correctAnswer>
+        </question>
+        <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="extendedAnswerExamQuestion">
+            <text>What is your preferred programming paradigm (e.g. imperative, object-oriented, functional, etc.)? Provide an argument for why this paradigm is superior to others.</text>
+        </question>
+    </questions>
+</exam>

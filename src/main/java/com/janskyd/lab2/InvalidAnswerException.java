@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2;
+package com.janskyd.lab2;
 
 /**
  *
  * @author jansky
  */
-public class InvalidQuestionException extends Exception {
+public class InvalidAnswerException extends Exception {
     
-    public InvalidQuestionException(String message) {
+    InvalidAnswerException(String message) {
         super(message);
     }
     

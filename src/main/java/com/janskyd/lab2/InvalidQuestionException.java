@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2;
+package com.janskyd.lab2;
 
 /**
  *
  * @author jansky
  */
-public enum AnswerState {
-    CORRECT_ANSWER, INCORRECT_ANSWER, UNSCORABLE_ANSWER
+public class InvalidQuestionException extends Exception {
+    
+    public InvalidQuestionException(String message) {
+        super(message);
+    }
+    
 }

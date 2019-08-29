@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2;
+package com.janskyd.lab2;
 
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -17,10 +19,10 @@ public class ExamMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InvalidQuestionException {
+    public static void main(String[] args) throws InvalidQuestionException, JAXBException {
         // TODO code application logic here
         
-        ArrayList<String> answerOptions = new ArrayList<>();
+        /*ArrayList<String> answerOptions = new ArrayList<>();
         answerOptions.add("C");
         answerOptions.add("Go");
         answerOptions.add("OCaml");
@@ -37,6 +39,9 @@ public class ExamMain {
         
         Exam exam = new Exam("Programming Language Exam", "You are going to complete a short exam testing your knowledge of different programming languages. Good luck!", "You have finished the exam.", questions);
         
+        exam.toXML(new File("programming_exam.xml"));*/
+        
+        Exam exam = Exam.fromXML(new File("programming_exam.xml"));
         
         JFrame examFrame = new ExamFrame(exam);
         examFrame.setVisible(true);

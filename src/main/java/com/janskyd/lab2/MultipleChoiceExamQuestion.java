@@ -3,23 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2;
+package com.janskyd.lab2;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author jansky
  */
+@XmlRootElement
 public class MultipleChoiceExamQuestion implements ExamQuestion {
     
+    @XmlElement
     private final String text;
+    
+    @XmlElementWrapper(name="correctAnswers")
+    @XmlElement(name="correctAnswer")
     private final List<String> answers;
+    
+    @XmlElement
     private final String correctAnswer;
     
     private boolean hasAnswered = false;
     private String answer;
+    
+    private MultipleChoiceExamQuestion() {
+        this.text = "";
+        this.answers = new ArrayList<>();
+        this.correctAnswer = "";
+        this.hasAnswered = false;
+        this.answer = "";
+        
+    }
     
     MultipleChoiceExamQuestion(String text, List<String> answers, String correctAnswer) throws InvalidQuestionException {
         this.text = text;
