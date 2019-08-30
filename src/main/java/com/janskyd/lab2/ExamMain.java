@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2019 Ian Duncan
+ * For YSC3232 Software Engineering, 2019-20 Sem 1
  */
 package com.janskyd.lab2;
 
@@ -54,7 +53,8 @@ public class ExamMain {
         
         String tmpFileName = getRandomXMLFilename();
         
-        Exam toWrite = new Exam("Programming Language Exam", "You are going to complete a short exam testing your knowledge of different programming languages. Good luck!", "You have finished the exam.", questions);        toWrite.toXML(new File(tmpFileName));
+        Exam toWrite = new Exam("Programming Language Exam", "You are going to complete a short exam testing your knowledge of different programming languages. Good luck!", "You have finished the exam.", questions);
+        toWrite.toXML(new File(tmpFileName));
         
         Exam fromMarshalled = Exam.fromXML(new File(tmpFileName));
         

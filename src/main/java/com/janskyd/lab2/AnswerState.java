@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2019 Ian Duncan
+ * For YSC3232 Software Engineering, 2019-20 Sem 1
  */
 package com.janskyd.lab2;
 

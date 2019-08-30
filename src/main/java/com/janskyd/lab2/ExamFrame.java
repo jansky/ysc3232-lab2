@@ -1,17 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2019 Ian Duncan
+ * For YSC3232 Software Engineering, 2019-20 Sem 1
  */
 package com.janskyd.lab2;
 
 import java.awt.CardLayout;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- *
+ * A Swing Frame used to display an exam
  * @author Ian Duncan
  */
 public class ExamFrame extends javax.swing.JFrame {
@@ -22,9 +20,8 @@ public class ExamFrame extends javax.swing.JFrame {
     /**
      * Creates new form ExamFrame which will allow a user to take the given exam.
      * @param exam The exam to display to the user
-     * @throws com.janskyd.lab2.InvalidQuestionException
      */
-    public ExamFrame(Exam exam) throws InvalidQuestionException {
+    public ExamFrame(Exam exam) {
         
         this.exam = exam;
         
