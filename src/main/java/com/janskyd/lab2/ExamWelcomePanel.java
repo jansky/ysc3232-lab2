@@ -6,17 +6,26 @@
 package com.janskyd.lab2;
 
 /**
- *
- * @author jansky
+ * A JPanel component that displays the exam welcome text before the user begins
+ * the exam.
+ * @author Ian Duncan
  */
 public class ExamWelcomePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ExamWelcomePanel
+     * Creates new JPanel component that will be displayed to the user before
+     * they begin the exam.
+     * @param welcomeText The welcome text of the exam.
      */
     public ExamWelcomePanel(String welcomeText) {
         initComponents();
         
+        /*
+        JLabels do not support text wrapping when given plain text to display.
+        They, do, however, support text wrapping when given HTML. We take
+        advantage of this by wrapping our plain welcome text in a minimal HTML
+        document.
+        */
         this.welcomeTextLabel.setText("<html><body>" + welcomeText + "</body></html>");
     }
 

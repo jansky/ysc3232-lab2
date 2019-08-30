@@ -7,16 +7,23 @@ package com.janskyd.lab2;
 
 /**
  *
- * @author jansky
+ * @author Ian Duncan
  */
 public class ExamFinishedPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ExamWelcomePanel
+     * Creates a new JPanel displayed when the examination is finished.
+     * @param finishedText The finishedText of the exam.
      */
     public ExamFinishedPanel(String finishedText) {
         initComponents();
         
+        /*
+        JLabels do not support text wrapping when given plain text to display.
+        They, do, however, support text wrapping when given HTML. We take
+        advantage of this by wrapping our plain welcome text in a minimal HTML
+        document.
+        */
         this.finishedTextLabel.setText("<html><body>" + finishedText + "</body></html>");
     }
 

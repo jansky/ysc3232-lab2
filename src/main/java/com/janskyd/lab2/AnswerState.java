@@ -6,9 +6,23 @@
 package com.janskyd.lab2;
 
 /**
- *
- * @author jansky
+ * The possible scoring states for an answer to a question
+ * @author Ian Duncan
  */
 public enum AnswerState {
-    CORRECT_ANSWER, INCORRECT_ANSWER, UNSCORABLE_ANSWER
+
+    /**
+     * The given answer is correct
+     */
+    CORRECT_ANSWER,
+
+    /**
+     * The given answer is incorrect
+     */
+    INCORRECT_ANSWER,
+
+    /**
+     * The given answer cannot be automatically marked as correct or incorrect
+     */
+    UNSCORABLE_ANSWER
 }

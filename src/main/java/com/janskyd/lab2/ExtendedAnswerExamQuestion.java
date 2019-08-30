@@ -9,8 +9,9 @@ import javax.swing.JPanel;
 import javax.xml.bind.annotation.*;
 
 /**
- *
- * @author jansky
+ * An exam question that accepts long-form responses. This question type does
+ * not support automatic scoring.
+ * @author Ian Duncan
  */
 @XmlRootElement
 public class ExtendedAnswerExamQuestion implements ExamQuestion {

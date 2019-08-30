@@ -18,9 +18,12 @@ import javax.xml.bind.annotation.*;
 
 /**
  *
- * @author jansky
+ * @author Ian Duncan
  */
 @XmlRootElement
+/* We help out JAXB by informing it of the classes that satisfy the ExamQuestion
+   interface. Idea from: https://stackoverflow.com/a/14073899
+*/
 @XmlSeeAlso({MultipleChoiceExamQuestion.class, ExtendedAnswerExamQuestion.class, ShortAnswerExamQuestion.class})
 public class Exam {
     
@@ -31,26 +34,50 @@ public class Exam {
     @XmlElement
     private final String finishedText;
     
+    // JAXB can't marshal / unmarshal interfaces by default. We give it a little
+    // helpful push.
+    // Idea from: https://stackoverflow.com/a/41736816
     @XmlElementWrapper(name="questions")
     @XmlElement(type = Object.class, name="question")
     private final List<ExamQuestion> questions;
 
+    /**
+     * Gets the exam's title
+     * @return
+     */
     public String title() {
         return this.title;
     }
 
+    /**
+     * Gets the exam's welcome text
+     * @return
+     */
     public String welcomeText() {
         return this.welcomeText;
     }
 
+    /**
+     * Gets the text to be displayed when the exam is finished
+     * @return
+     */
     public String finishedText() {
         return this.finishedText;
     }
 
+    /**
+     * Gets the list of exam question
+     * @return
+     */
     public List<ExamQuestion> questions() {
         return this.questions;
     }
     
+    /*
+     * This private, no-arg constructor is needed by JAXB to marshal and
+     * unmarshal XML. We need to initialize all class members here to
+     * prevent JAXB from throwing an exception on unmarshaling as well.
+    */
     private Exam() {
         this.title = "";
         this.welcomeText = "";
@@ -66,6 +93,9 @@ public class Exam {
         this.questions = questions;
     }
     
+    /**
+     * Prints the user's answers and their correctness for each exam question.
+     */
     public void printScoreReport() {
         
         for(int i = 0; i < this.questions.size(); i++) {
@@ -101,6 +131,12 @@ public class Exam {
         
     }
     
+    /**
+     * Serializes the exam and its questions to an XML file. Answers are not
+     * serialized.
+     * @param outFile The file to save the exam XML to
+     * @throws JAXBException
+     */
     public void toXML(File outFile) throws JAXBException {
         
         JAXBContext jaxbContext = JAXBContext.newInstance(Exam.class);
@@ -113,17 +149,17 @@ public class Exam {
         
     }
     
+    /**
+     * Loads an exam and its questions from an XML file.
+     * @param inFile The file to load the XML data from.
+     * @return The deserialized exam.
+     * @throws JAXBException
+     */
     public static Exam fromXML(File inFile) throws JAXBException {
-        
-        //creating the JAXB context
 
         JAXBContext jContext = JAXBContext.newInstance(Exam.class);
 
-        //creating the unmarshall object
-
         Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
-
-        //calling the unmarshall method
 
         Exam exam =(Exam) unmarshallerObj.unmarshal(inFile);
 

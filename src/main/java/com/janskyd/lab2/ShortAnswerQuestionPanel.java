@@ -13,15 +13,16 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 /**
- *
- * @author jansky
+ * A JPanel component that displays short answer questions.
+ * @author Ian Duncan
  */
 public class ShortAnswerQuestionPanel extends javax.swing.JPanel {
     
     private ShortAnswerExamQuestion question;
 
     /**
-     * Creates new form ShortAnswerQuestionPanel
+     * Creates a new JPanel component to display the given short answer question.
+     * @param question
      */
     public ShortAnswerQuestionPanel(ShortAnswerExamQuestion question) {
         
@@ -29,8 +30,16 @@ public class ShortAnswerQuestionPanel extends javax.swing.JPanel {
         
         initComponents();
         
+        /*
+        JLabels do not support text wrapping when given plain text to display.
+        They, do, however, support text wrapping when given HTML. We take
+        advantage of this by wrapping our plain welcome text in a minimal HTML
+        document.
+        */
         this.questionTextLabel.setText("<html><body>" + this.question.text() + "</body></html>");
         
+        // When the user updates the answer text field, update the question's
+        // answer.
         this.shortAnswerTextField.getDocument().addDocumentListener(new DocumentListener() {
             
             private void updateText(DocumentEvent e) {

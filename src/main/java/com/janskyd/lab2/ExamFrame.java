@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author jansky
+ * @author Ian Duncan
  */
 public class ExamFrame extends javax.swing.JFrame {
     
@@ -20,13 +20,22 @@ public class ExamFrame extends javax.swing.JFrame {
     private Exam exam;
 
     /**
-     * Creates new form ExamFrame
+     * Creates new form ExamFrame which will allow a user to take the given exam.
+     * @param exam The exam to display to the user
+     * @throws com.janskyd.lab2.InvalidQuestionException
      */
     public ExamFrame(Exam exam) throws InvalidQuestionException {
         
         this.exam = exam;
         
         initComponents();
+        
+        /* We have separate JPanel components for the welcome and finished "pages"
+           of the exam, as well as for all the exam questions. We add all of these
+           JPanels to the main panel of our JFrame, which has a CardLayout. As the
+           user advances through the exam, we switch the current JPanel displayed
+           as appropriate.
+        */
         
         JPanel welcomePanel = new ExamWelcomePanel(exam.welcomeText());
         JPanel finishedPanel = new ExamFinishedPanel(exam.finishedText());
@@ -107,9 +116,10 @@ public class ExamFrame extends javax.swing.JFrame {
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         
+        // We're currently at the welcome page
         if(this.currentQuestionID == -1) {
             
-            this.currentQuestionID = 0;
+            this.currentQuestionID = 0; // Advance to the first question
             CardLayout cl = (CardLayout)(this.mainPanel.getLayout());
             cl.show(this.mainPanel, "QUESTION0");
             
@@ -119,6 +129,7 @@ public class ExamFrame extends javax.swing.JFrame {
             
             
         } else if(this.currentQuestionID < this.exam.questions().size() - 1) {
+            // We're currently in the middle of the exam. Advance to the next question.
             
             ExamQuestion question = this.exam.questions().get(this.currentQuestionID);
             
@@ -129,6 +140,7 @@ public class ExamFrame extends javax.swing.JFrame {
                 
                 this.titleLabel.setText("Question " + String.valueOf(1 + this.currentQuestionID) + " of " + String.valueOf(this.exam.questions().size()));
                 
+                // If we're advancing to the last question, inform the user of this fact.
                 if(this.currentQuestionID == this.exam.questions().size() - 1) {
                     this.continueButton.setText("Finish");
                 }
@@ -138,7 +150,7 @@ public class ExamFrame extends javax.swing.JFrame {
             }
             
         } else if(this.currentQuestionID == this.exam.questions().size() - 1) {
-            
+            // We're currently on the last question. Advance to the finished page.
             ExamQuestion question = this.exam.questions().get(this.currentQuestionID);
             
             if(question.hasAnswered()) {
@@ -153,6 +165,7 @@ public class ExamFrame extends javax.swing.JFrame {
             }
             
         } else {
+            // We're currently on the finished page. Print the score report and exit.
             this.exam.printScoreReport();
             
             this.setVisible(false);

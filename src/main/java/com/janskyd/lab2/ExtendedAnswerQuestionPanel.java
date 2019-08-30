@@ -7,22 +7,23 @@ package com.janskyd.lab2;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 /**
- *
- * @author jansky
+ * A JPanel component displays extended answer questions.
+ * @author Ian Duncan
  */
 public class ExtendedAnswerQuestionPanel extends javax.swing.JPanel {
     
     private ExtendedAnswerExamQuestion question;
 
     /**
-     * Creates new form ExtendedAnswerQuestionPanel
+     * Creates a new JPanel component to display the given extended answer
+     * question.
+     * @param question
      */
     public ExtendedAnswerQuestionPanel(ExtendedAnswerExamQuestion question) {
         
@@ -30,9 +31,16 @@ public class ExtendedAnswerQuestionPanel extends javax.swing.JPanel {
         
         initComponents();
         
+        /*
+        JLabels do not support text wrapping when given plain text to display.
+        They, do, however, support text wrapping when given HTML. We take
+        advantage of this by wrapping our plain welcome text in a minimal HTML
+        document.
+        */
         this.questionTextLabel.setText("<html><body>" + this.question.text() + "</body></html>");
-        questionTextLabel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         
+        
+        // Update the question's answer when the user updates the answer text field.
         this.extendedAnswerText.getDocument().addDocumentListener(new DocumentListener() {
             
             private void updateText(DocumentEvent e) {

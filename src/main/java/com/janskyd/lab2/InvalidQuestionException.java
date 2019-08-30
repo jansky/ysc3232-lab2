@@ -6,12 +6,14 @@
 package com.janskyd.lab2;
 
 /**
- *
- * @author jansky
+ * Indicates that the question has been incorrectly initialized by the arguments
+ * passed to its constructor.
+ * @author Ian Duncan
  */
 public class InvalidQuestionException extends Exception {
     
-    public InvalidQuestionException(String message) {
+
+    InvalidQuestionException(String message) {
         super(message);
     }
     

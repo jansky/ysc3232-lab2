@@ -13,8 +13,9 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author jansky
+ * This question accepts one of several pre-specified answer choices. This
+ * question type supports automatic scoring.
+ * @author Ian Duncan
  */
 @XmlRootElement
 public class MultipleChoiceExamQuestion implements ExamQuestion {
@@ -22,8 +23,16 @@ public class MultipleChoiceExamQuestion implements ExamQuestion {
     @XmlElement
     private final String text;
     
-    @XmlElementWrapper(name="correctAnswers")
-    @XmlElement(name="correctAnswer")
+    /* We tell JAXB to create an XML collection for the answer choices. When
+       marshalled, it will look like:
+    
+      <answers>
+        <answer>...</answer>
+        <answer>...</answer>
+      </answers>
+    */
+    @XmlElementWrapper(name="answers")
+    @XmlElement(name="answer")
     private final List<String> answers;
     
     @XmlElement
@@ -32,6 +41,10 @@ public class MultipleChoiceExamQuestion implements ExamQuestion {
     private boolean hasAnswered = false;
     private String answer;
     
+    /* This private, no-arg constructor is required by JAXB for unmarshaling from
+       XML. We also have to initialize all class properties here to prevent JAXB
+       from throwing an exception upon unmarshaling.
+    */
     private MultipleChoiceExamQuestion() {
         this.text = "";
         this.answers = new ArrayList<>();
@@ -90,6 +103,10 @@ public class MultipleChoiceExamQuestion implements ExamQuestion {
         return new MultipleChoiceQuestionPanel(this);
     }
     
+    /**
+     * Gets the answer options of the question
+     * @return
+     */
     public List<String> answerOptions() {
         return this.answers;
     }

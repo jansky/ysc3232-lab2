@@ -13,8 +13,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 
 /**
- *
- * @author jansky
+ * A JPanel component that displays multiple choice questions.
+ * @author Ian Duncan
  */
 public class MultipleChoiceQuestionPanel extends javax.swing.JPanel {
     
@@ -23,7 +23,9 @@ public class MultipleChoiceQuestionPanel extends javax.swing.JPanel {
     private ButtonGroup answerOptionsButtonGroup;
 
     /**
-     * Creates new form MultipleChoiceQuestionPanel
+     * Creates a new JPanel component to display the given multiple choice exam
+     * question.
+     * @param question
      */
     public MultipleChoiceQuestionPanel(MultipleChoiceExamQuestion question) {
         
@@ -31,14 +33,28 @@ public class MultipleChoiceQuestionPanel extends javax.swing.JPanel {
         
         initComponents();
         
+        /* We need this for our answer radio buttons to work properly (i.e. only
+        one can be selected at once).
+        */
         this.answerOptionsButtonGroup = new ButtonGroup();
+        
+        /*
+        JLabels do not support text wrapping when given plain text to display.
+        They, do, however, support text wrapping when given HTML. We take
+        advantage of this by wrapping our plain welcome text in a minimal HTML
+        document.
+        */
         this.questionTextLabel.setText("<html><body>" + this.question.text() + "</body></html>");
         
         for(String answer : this.question.answerOptions()) {
             
             JRadioButton answerButton = new JRadioButton(answer);
+            /* This allows us to know which answer has been selected in the event
+               handler.
+            */
             answerButton.setActionCommand(answer);
             
+            /* When the user clicks the button, set the answer */
             answerButton.addActionListener(new ActionListener() {
                 
                 @Override
@@ -52,8 +68,12 @@ public class MultipleChoiceQuestionPanel extends javax.swing.JPanel {
                 
             });
             
+            
             this.answerOptionsButtonGroup.add(answerButton);
             
+            /* This panel uses a box layout, so all buttons will appear in a
+               vertical row.
+            */
             this.answerOptionsPanel.add(answerButton);
             
         }

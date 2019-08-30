@@ -6,8 +6,8 @@
 package com.janskyd.lab2;
 
 /**
- *
- * @author jansky
+ * Indicates that the user has entered an invalid answer to a question.
+ * @author Ian Duncan
  */
 public class InvalidAnswerException extends Exception {
     
