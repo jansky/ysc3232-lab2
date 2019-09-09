@@ -37,8 +37,10 @@ very short phrase.
 * Extended answer, which does not support automatic scoring.
 
 Exams can be marshalled and unmarshalled to and from XML via JAXB. Marshalling and
-unmarshalling only preserves the exam metadata and question data. User-provided
-answers cannot be saved and loaded.
+unmarshalling only preserves the exam metadata and question data (not answers), 
+because the main intent of unmarshalling is to display an exam stored in a file
+to the user. Answers should be captured or stored seperately, and are currently
+scored and printed to the console at the end of the exam.
 
 ## Application
 
