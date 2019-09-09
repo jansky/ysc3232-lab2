@@ -6,6 +6,11 @@ to the current user. Here, I will describe the rationale behind my class structu
 and the graphical application I have created using Swing that allows a user to
 take an exam and receive some automatic feedback on their performance.
 
+## Building and Running
+
+You can open the root directory of this GitHub repository as a project in NetBeans,
+and click 'Run Project' to build and run the test application.
+
 ## Exam Structure
 
 The `Exam` class stores an examination, which contains
